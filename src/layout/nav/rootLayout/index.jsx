@@ -7,19 +7,23 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
-import { Outlet } from "react-router-dom";
 
-const pages = ["Products", "Pricing", "Blog"];
+import Button from "@mui/material/Button";
+
+import MenuItem from "@mui/material/MenuItem";
+
+import { Outlet } from "react-router-dom";
+import MainLogo from "../../../../src/assets/beep.png";
+import { UserMenuItems } from "../../../utils/constants/menuItems";
+import { useNavigate } from "react-router-dom";
+
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function RootLayout() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -28,20 +32,25 @@ function RootLayout() {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
 
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  function handleNavMenu(path) {
+    console.log(path, "pathddddddd");
+    navigate(path);
+  }
+
   return (
     <div>
-      <AppBar position="static">
+      <AppBar position="static" className="header">
         <Container maxWidth="xl">
-          <Toolbar disableGutters>
-            <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          <Toolbar className="headerAlignment">
+            {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
             <Typography
               variant="h6"
               noWrap
@@ -57,9 +66,12 @@ function RootLayout() {
                 textDecoration: "none",
               }}
             >
-              LOGO
+              <img
+                src={MainLogo}
+                alt="Image"
+                style={{ width: "100px", height: "100px" }}
+              />
             </Typography>
-
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
@@ -89,14 +101,19 @@ function RootLayout() {
                   display: { xs: "block", md: "none" },
                 }}
               >
-                {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">{page}</Typography>
-                  </MenuItem>
-                ))}
+                {UserMenuItems?.map((page, i) => {
+                  return (
+                    <MenuItem onClick={() => handleNavMenu(page.path)} key={i}>
+                      <Typography className="MenuHeader" textAlign="center">
+                        {page?.name}
+                      </Typography>
+                    </MenuItem>
+                  );
+                })}
               </Menu>
             </Box>
-            <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+
+            {/* <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} /> */}
             <Typography
               variant="h5"
               noWrap
@@ -113,20 +130,28 @@ function RootLayout() {
                 textDecoration: "none",
               }}
             >
-              LOGO
+              <img
+                src={MainLogo}
+                alt="Image"
+                style={{ width: "100px", height: "100px" }}
+              />
             </Typography>
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-              {pages.map((page) => (
-                <Button
-                  key={page}
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                >
-                  {page}
-                </Button>
-              ))}
-            </Box>
+            <div>
+              <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+                {UserMenuItems?.map((page, i) => (
+                  <Button
+                    className="MenuHeader"
+                    key={page}
+                    onClick={() => handleNavMenu(page.path)}
+                    sx={{ my: 2, color: "white", display: "block" }}
+                  >
+                    {page?.name}
+                  </Button>
+                ))}
+              </Box>
+            </div>
 
+            {/* 
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -155,7 +180,7 @@ function RootLayout() {
                   </MenuItem>
                 ))}
               </Menu>
-            </Box>
+            </Box> */}
           </Toolbar>
         </Container>
       </AppBar>
