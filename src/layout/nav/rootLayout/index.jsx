@@ -7,33 +7,25 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-
 import Button from "@mui/material/Button";
-
 import MenuItem from "@mui/material/MenuItem";
-
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import MainLogo from "../../../../src/assets/beep.png";
 import { UserMenuItems } from "../../../utils/constants/menuItems";
 import { useNavigate } from "react-router-dom";
+import AdbIcon from "@mui/icons-material/Adb";
+import { Avatar, Tooltip } from "@mui/material";
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function RootLayout() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
   };
 
   const handleCloseNavMenu = () => {
@@ -41,16 +33,18 @@ function RootLayout() {
   };
 
   function handleNavMenu(path) {
-    console.log(path, "pathddddddd");
     navigate(path);
   }
+
+  const logoRoute = () => {
+    navigate("/");
+  };
 
   return (
     <div>
       <AppBar position="static" className="header">
         <Container maxWidth="xl">
           <Toolbar className="headerAlignment">
-            {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
             <Typography
               variant="h6"
               noWrap
@@ -67,6 +61,7 @@ function RootLayout() {
               }}
             >
               <img
+                onClick={logoRoute}
                 src={MainLogo}
                 alt="Image"
                 style={{ width: "100px", height: "100px" }}
@@ -81,7 +76,7 @@ function RootLayout() {
                 onClick={handleOpenNavMenu}
                 color="inherit"
               >
-                <MenuIcon />
+                <MenuIcon sx={{ color: "black" }} />
               </IconButton>
               <Menu
                 id="menu-appbar"
@@ -102,9 +97,19 @@ function RootLayout() {
                 }}
               >
                 {UserMenuItems?.map((page, i) => {
+                  let isActive = location?.pathname === page?.path;
+              
                   return (
                     <MenuItem onClick={() => handleNavMenu(page.path)} key={i}>
-                      <Typography className="MenuHeader" textAlign="center">
+                      <Typography
+                        className="MenuHeader"
+                        textAlign="center"
+                        sx={{
+                          color: isActive
+                            ? "red !important"
+                            : "black !important",
+                        }}
+                      >
                         {page?.name}
                       </Typography>
                     </MenuItem>
@@ -113,12 +118,11 @@ function RootLayout() {
               </Menu>
             </Box>
 
-            {/* <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} /> */}
             <Typography
               variant="h5"
               noWrap
               component="a"
-              href="#app-bar-with-responsive-menu"
+              // href="#app-bar-with-responsive-menu"
               sx={{
                 mr: 2,
                 display: { xs: "flex", md: "none" },
@@ -138,49 +142,26 @@ function RootLayout() {
             </Typography>
             <div>
               <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-                {UserMenuItems?.map((page, i) => (
-                  <Button
-                    className="MenuHeader"
-                    key={page}
-                    onClick={() => handleNavMenu(page.path)}
-                    sx={{ my: 2, color: "white", display: "block" }}
-                  >
-                    {page?.name}
-                  </Button>
-                ))}
+                {UserMenuItems?.map((page, i) => {
+                  let isActive = location.pathname === page.path;
+
+                  return (
+                    <Button
+                      className="MenuHeader"
+                      key={page}
+                      onClick={() => handleNavMenu(page.path)}
+                      sx={{
+                        my: 2,
+                        color: isActive ? "red !important" : "black !important",
+                        display: "block",
+                      }}
+                    >
+                      {page?.name}
+                    </Button>
+                  );
+                })}
               </Box>
             </div>
-
-            {/* 
-            <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: "45px" }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting}</Typography>
-                  </MenuItem>
-                ))}
-              </Menu>
-            </Box> */}
           </Toolbar>
         </Container>
       </AppBar>

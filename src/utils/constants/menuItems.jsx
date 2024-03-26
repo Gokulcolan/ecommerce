@@ -2,27 +2,23 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 export const UserMenuItems = [
   {
-    path: "dashboard",
+    path: "/",
     name: "Home",
   },
   {
-    path: "about",
+    path: "/about",
     name: "About Us",
   },
   {
-    path: "contact",
-    name: "Contact",
-  },
-  {
-    path: "blog",
-    name: "Blog",
-  },
-  {
-    path: "products",
+    path: "/products",
     name: "Products",
   },
   {
-    path: "",
+    path: "/contact",
+    name: "Contact",
+  },
+  {
+    path: "/cart",
     name: <ShoppingCartIcon />,
   },
 ];

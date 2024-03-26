@@ -203,7 +203,7 @@
 .productList {
   margin: 1rem;
   padding: 2rem;
-  height: 400px;
+  /* height: 400px; */
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
@@ -226,6 +226,182 @@
   width: 200px;
   outline: none;
   border: none;
-  margin: 2rem;
+  margin: 4rem;
+}
 
+.cartBtn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  background-color: #f7444e;
+  color: white;
+}
+
+.cartBtn:hover {
+  border: solid 1px #f7444e;
+  color: #f7444e;
+  background-color: transparent;
+}
+
+.buyBtn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  background-color: black;
+  color: white;
+}
+
+.buyBtn:hover {
+  border: solid 1px black;
+  color: black;
+  background-color: transparent;
+}
+
+.productList p {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.titleCard {
+  background-color: #f7444e;
+  color: white;
+  text-align: center;
+  padding: 2rem 0rem;
+}
+
+.titleCard h2 {
+  font-size: 3rem;
+}
+
+td,
+th {
+  table-layout: auto;
+  width: "250px";
+  padding: 0px 20px;
+}
+
+.tableCard {
+  background-color: white;
+  border-radius: 25px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 2rem;
+}
+
+.incBtn {
+  border: solid 1px grey;
+  border-radius: 5px;
+}
+
+.incInp {
+  width: "20px";
+  border: solid 1px white;
+  outline: "none";
+}
+
+.cart {
+  background-color: #eff3f6;
+  padding: 2rem 0rem;
+}
+
+.shippingDetails h2 {
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+
+.shipCard {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 20px;
+}
+
+.shippingDetails input {
+  border-radius: 20px;
+  background-color: #eff3f6;
+  border: none;
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 100%;
+}
+
+.shipBtn {
+  background-color: #000;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.shipBtn:hover {
+  background-color: transparent;
+  color: black;
+  border: solid 1px black;
+  padding: 10px 20px;
+  border-radius: 20px;
+  width: 100%;
+}
+
+.coupon h2 {
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+
+.coupon p {
+  font-size: 16px;
+  color: #8b8c91;
+}
+
+.coupon input {
+  border-radius: 20px;
+  background-color: #eff3f6;
+  border: none;
+  margin-bottom: 25px;
+  padding: 10px;
+  width: 100%;
+}
+
+.cartTotal h2 {
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+
+.cartTotal {
+  background-color: #ffd28d;
+  padding: 15px;
+  border-radius: 20px;
+}
+
+.shopBtn {
+  border: none;
+  padding: 10px 20px;
+  background-color: #f7444e;
+  color: white;
+  border-radius: 20px;
+}
+
+.modalBtn {
+  border: none;
+  padding: 10px 10px;
+  background-color: #f7444e;
+  color: white;
+  border-radius: 5px;
+}
+
+.contact input {
+  margin: 10px;
+  border: solid 1px grey;
+  padding: 10px;
+  width: 800px;
+}
+
+.sbtBtn {
+  background-color: #000;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  margin: 2rem;
 }

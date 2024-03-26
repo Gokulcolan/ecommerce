@@ -1,5 +1,5 @@
 import AboutUs from "../../pages/About/about";
-import Blog from "../../pages/Blogs";
+import ShoppingBag from "../../pages/cart/cart";
 import Contact from "../../pages/Contacts/contact";
 import Dashboard from "../../pages/Home";
 import Products from "../../pages/Products";
@@ -10,12 +10,11 @@ const UserRoutes = [
     path: "/",
     element: <RootLayout />,
     children: [
-      
       {
-        path: "dashboard",
+        path: "/",
         element: <Dashboard />,
       },
-      { 
+      {
         path: "products",
         element: <Products />,
       },
@@ -23,13 +22,14 @@ const UserRoutes = [
         path: "about",
         element: <AboutUs />,
       },
-      {
-        path: "blog",
-        element: <Blog />,
-      },
+  
       {
         path: "contact",
         element: <Contact />,
+      },
+      {
+        path: "cart",
+        element: <ShoppingBag />,
       },
     ],
   },

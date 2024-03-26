@@ -22,15 +22,16 @@ const Dashboard = () => {
       });
   }, []);
 
-  // const handleProductRedirect = () => {
-  //   console.log("Redirecting to Products page");
-  //   navigate({
-  //     pathname: "/products",
-  //     state: { productList: productList },
-  //   });
-  // };
-
   const handleProductRedirect = () => {
+    navigate("/products", { state: { productList } });
+  };
+
+  const addProductToCart = (i) => {
+   
+    navigate("/cart", { state: { i } });
+  };
+
+  const handleRedirect = () => {
     navigate("/products");
   };
 
@@ -51,7 +52,9 @@ const Dashboard = () => {
                     repudiandae earum suscipit fugiat molestias, veniam, vel
                     architecto veritatis delectus repellat modi impedit sequi.
                   </p>
-                  <button className="btn btnBox">Shop Now</button>
+                  <button className="btn btnBox" onClick={handleRedirect}>
+                    Shop Now
+                  </button>
                 </div>
               </div>
             </div>
@@ -103,7 +106,7 @@ const Dashboard = () => {
                     eaque tenetur totam earum animi corrupti, facilis illo omnis
                     laboriosam nulla quia laudantium neque.
                   </p>
-                  <button className="btn btnBox">Shop Now</button>
+                  <button className="btn btnBox" onClick={handleRedirect}>Shop Now</button>
                 </div>
               </div>
             </div>
@@ -129,6 +132,28 @@ const Dashboard = () => {
                     />
                     <p style={{ marginTop: "1rem" }}>{val.title}</p>
                     <p>₹{val.price}</p>
+                    <div className="row" style={{ textAlign: "center" }}>
+                      <div className="col-lg-6">
+                        <button
+                          className="cartBtn"
+                          onClick={() => {
+                            addProductToCart(i);
+                          }}
+                        >
+                          Add to Cart
+                        </button>
+                      </div>
+                      <div className="col-lg-6">
+                        <button
+                          className="buyBtn"
+                          onClick={() => {
+                            addProductToCart(i);
+                          }}
+                        >
+                          Buy now
+                        </button>
+                      </div>
+                    </div>
                     {/* Add more information about the product here if needed */}
                   </div>
                 </div>
@@ -146,6 +171,7 @@ const Dashboard = () => {
           <div className="container">
             <div className="row">
               <div className="col-lg-12">
+                <br />
                 <h3 className="subscribeHead">
                   Subscribe To Get Discount Offers
                 </h3>
@@ -153,6 +179,7 @@ const Dashboard = () => {
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempor
                 </p>
+                <br />
                 <input
                   className="inp"
                   type="text"
@@ -160,8 +187,10 @@ const Dashboard = () => {
                 />
                 <br />
                 <br />
-
+                <br />
                 <button className="subBtn">SUBSCRIBE</button>
+                <br />
+                <br />
               </div>
             </div>
           </div>
@@ -197,9 +226,7 @@ const Dashboard = () => {
                   <ul className="no-dots">
                     <li>Home</li>
                     <li>About</li>
-                    <li>Services</li>
-                    <li>Testimonials</li>
-                    <li>Blog</li>
+                    <li>Products</li>
                     <li>Contact</li>
                   </ul>
                 </div>

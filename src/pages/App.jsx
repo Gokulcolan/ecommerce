@@ -1,16 +1,10 @@
-import {  useRoutes } from "react-router-dom";
+import { useRoutes } from "react-router-dom";
 import "../App.css";
 import { getRoutes } from "../layout/Routes";
 
 function App() {
   const router = useRoutes(getRoutes(1));
-  return (
-    // <div className="App">
-
-    <header className="App-header">{router}</header>
-
-    // </div>
-  );
+  return <header className="App-header">{router}</header>;
 }
 
 export default App;
